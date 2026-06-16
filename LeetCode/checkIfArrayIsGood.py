@@ -2,12 +2,12 @@ class Solution:
     def isGood(self, nums: List[int]) -> bool:
         nums.sort()
         n = len(nums) # if nums[3] = [1,2,3,3], n = 4
-        count = [0] * (n+1) # count will have 5 items
+        count = [0] * n # count will have 4 items of 0
         for i in nums: # each item in the list
-            if nums[i] > (n-1): # if its greater than base, false
+            if i > (n-1): # if its greater than base, false
                 return False
             
-            count[i] += 1 #increment 1 for frequency of each number
+            count[i] += 1 #add 1 to 0 for frequency of each number
 
         # check if 1 to n-1 appears once
         for x in range(1, n-1):

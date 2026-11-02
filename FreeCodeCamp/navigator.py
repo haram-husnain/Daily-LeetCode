@@ -5,23 +5,23 @@ def navigate(commands):
     current = "Home"
 
     for step in commands:
-        if step == "Forward" and forward:
-            back.append(current)
-            current = forward.pop()
+        if step == "Forward" and forward:   # if foreward is not empty
+            back.append(current)            # push the current page to back
+            current = forward.pop()         # set the next page as current & remove from stack
             
-        elif step == "Back" and back:
-            forward.append(current)
-            current = back.pop()
+        elif step == "Back" and back:       # if back is not empty
+            forward.append(current)         # push the current page to forward
+            current = back.pop()            # set the prev page as current & remove from stack
             
         elif step.startswith("Visit "):
-            back.append(current)
-            current = step[6:]
-            forward.clear()
+            back.append(current)    # push the prev page to back
+            current = step[6:]      # move to new page
+            forward.clear()         # clear next pages
 
-    print(f"\nFinal Page: {current}")
+    print(f"\nFinal Page: {current}") # the default will always be Home
     return current
  
-navigate(["Visit About Us", "Visit Gallery", "Back", "Back"])
+navigate(["Visit About", "Visit Gallery", "Back", "Visit Contact", "Forward"])
 
 # On October 28, 1994, Netscape Navigator was released, helping millions explore the early web.
 # Given an array of browser commands you executed on Netscape Navigator, return the current page you are on after executing all the commands using the following rules:
